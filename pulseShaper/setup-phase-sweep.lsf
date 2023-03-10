@@ -1,0 +1,10 @@
+## Do a Phase-Shift Sweep:
+## Davin Birdi, 2023
+
+
+# add a new sweep and set basic properties
+addsweep;
+sweepname = "PhaseShiftSweep";
+setsweep("sweep", "name", sweepname);
+setsweep(sweepname, "type", "Ranges");
+setsweep(sweepname, "number of points", 10); 

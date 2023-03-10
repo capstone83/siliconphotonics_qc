@@ -1,0 +1,8 @@
+
+ymax = 100;
+xmax = 200;
+
+p1 = "port 1";
+p2 = "port 2";
+p3 = "port 3";
+p4 = "port 4";

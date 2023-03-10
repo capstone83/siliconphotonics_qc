@@ -1,0 +1,25 @@
+## Ring Compound Element
+
+
+set("name", ring);
+addport(ring,"port 1","input", "optical Signal"); #add port    
+addport(ring,"ADD_PORT","output","optical Signal", "right", 0); #add port    
+addport(ring,"DROP_PORT","output","optical Signal", "right", 1); #add port    
+
+
+## Expand Compound Element:
+groupscope(ring);
+makering;
+select("RELAY_1");
+set("name", "OPTICAL_IN"); set("x position", -2*xmax); set("y position", -ymax);
+select("RELAY_2");
+set("name", "ADD_PORT"); set("x position", 2*xmax); set("y position", -ymax);
+select("RELAY_3");
+set("name", "DROP_PORT"); set("x position", 2*xmax); set("y position", ymax);
+
+connect("coupler2", "port 1", "ADD_PORT", "input");
+connect("coupler1", "port 4", "DROP_PORT", "input");
+connect("coupler1", "port 2", "OPTICAL_IN", "output");
+
+# Return to Top Level
+groupscope("::Root Element");
