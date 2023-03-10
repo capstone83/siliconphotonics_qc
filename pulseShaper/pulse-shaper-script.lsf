@@ -1,0 +1,46 @@
+## Create Pulse Shaper
+## Davin Birdi, 2023s
+
+switchtolayout;
+deleteall;
+
+## Helper Functions:
+helper;
+
+## Create Ring:
+ring = "Ring1";
+createcompound();
+set("x position", -200); set("y position", 200);
+ringcompound;
+select("::Root Element::Ring1::wg1");
+radius1 = 15e-6; # 10um = approx 60um length
+set("length", 2*pi*radius1);
+# Return to Top Level
+groupscope("::Root Element");
+
+## Create a Ring
+ring = "Ring2";
+createcompound();
+set("x position", 200); set("y position", 200);
+ringcompound;
+select("::Root Element::Ring2::wg1");
+radius1 = 10e-6; # 10um = approx 60um length
+set("length", 2*pi*radius1);
+# Return to Top Level
+groupscope("::Root Element");
+
+
+## Add ONA:
+addelement("Optical Network Analyzer");
+set("name", "ONA");
+set("number of input ports", 2);
+set("center frequency", 193.1e12);
+set("frequency range", 10e12);
+set("x position", -200); set("y position", -200);
+
+connect("ONA", "output", ring1, "port 1");
+connect("ONA", "input 1", ring1, "DROP_PORT");
+connect("ONA", "input 2", ring1, "ADD_PORT");
+
+
+run;

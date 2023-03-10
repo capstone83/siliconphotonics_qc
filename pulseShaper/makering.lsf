@@ -1,0 +1,36 @@
+helper;
+
+coupler1 = "coupler1";
+addelement("Waveguide Coupler");
+set("name", coupler1);
+set("x position", 0); 
+set("y position", ymax);
+
+
+coupler2 = "coupler2";
+addelement("Waveguide Coupler");
+eleName = "Top";
+set("name", coupler2);
+set("x position", 0); 
+set("y position", -ymax);
+
+
+phaseshift = "phaseshift";
+addelement("Optical Phase Shift");
+set("name", phaseshift);
+set("x position", xmax); 
+set("y position", 0);
+rotateelement(phaseshift);
+
+addelement("Straight Waveguide");
+wg1 = "wg1";
+set("name", wg1);
+set("x position", -xmax); 
+set("y position", 0);
+rotateelement(wg1);
+
+connect(wg1,"port 1",coupler2,"port 2");
+connect(wg1,"port 2",coupler1,"port 1");
+
+connect(phaseshift, p1, coupler2, p4);
+connect(phaseshift, p2, coupler1, p3);
